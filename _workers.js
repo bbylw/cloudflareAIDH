@@ -112,7 +112,7 @@ function generateHTML(links) {
           align-items: center;
           min-height: 100vh;
         }
-        .container {
+      .container {
           max-width: 1200px;
           width: 100%;
           background-color: rgba(255, 255, 255, 0.1);
@@ -121,22 +121,22 @@ function generateHTML(links) {
           padding: 30px;
           margin: 20px;
         }
-        .category {
+      .category {
           margin-bottom: 30px;
         }
-        .category h2 {
+      .category h2 {
           color: #e0e0e0;
           font-size: 1.8em;
           border-bottom: 2px solid #ccc;
           padding-bottom: 10px;
           margin-bottom: 20px;
         }
-        .links {
+      .links {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           gap: 20px;
         }
-        .link {
+      .link {
           background-color: rgba(255, 255, 255, 0.2);
           padding: 15px;
           border-radius: 10px;
@@ -150,18 +150,32 @@ function generateHTML(links) {
           font-size: 1.2em;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
-        .link:hover {
+      .link:hover {
           background-color: rgba(255, 255, 255, 0.3);
           transform: translateY(-5px);
         }
         @media (max-width: 768px) {
-          .links {
+      .links {
             grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 10px;
+          }
+        .link {
+            padding: 10px;
+            font-size: 1em;
           }
         }
         @media (max-width: 480px) {
-          .links {
-            grid-template-columns: 1fr;
+      .links {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 10px;
+          }
+        .link {
+            padding: 10px;
+            font-size: 1em;
+            width: 100%;
+            box-sizing: border-box;
           }
         }
       </style>
