@@ -1,4 +1,4 @@
-addEventListener('fetch'， event => {
+addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request));
 });
 
@@ -39,7 +39,7 @@ const links = [
       { name: "蓝奏云", url: "https://up.woozooo.com/" },
       { name: "阿里云盘", url: "https://www.alipan.com/" },
       { name: "迅雷云盘", url: "https://pan.xunlei.com/" },
-      { name: "OneDrive", url: "" },
+      { name: "OneDrive", url: "https://onedrive.live.com/" },
       { name: "夸克网盘", url: "https://pan.quark.cn/" },
       { name: "百度网盘", url: "https://pan.baidu.com/" }
     ]
