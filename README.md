@@ -9,4 +9,4 @@ chatGPT生成的可以部署在cloudflare的免费导航页
 
 可以通过https://dynv6.com/       这个域名服务商绑定免费域名
 
-![7e36c7bc936a3745ba8a9.png](https://img.free2.dns.army/file/7e36c7bc936a3745ba8a9.png)
+![7e36c7bc936a3745ba8a9.png](https://img.free2.dns.army/file/62db6b10191d7c0ac2653.png)
