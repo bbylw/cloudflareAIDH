@@ -1,0 +1,427 @@
+<html><head><base href="https://hypernav.tech" /><title>HyperNav - Your AI-Powered Navigation Hub</title><style>
+  :root {
+    --background-color: #111111;
+    --text-color: #ffffff;
+    --tile-size: 120px;
+    --gap-size: 10px;
+    --accent-color: #00a2ff;
+    --ai-glow: #00ffff;
+    --ai-accent1: #00ffff;
+    --ai-accent2: #ff00ff;
+  }
+  
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .logo-container {
+    background: linear-gradient(135deg, 
+      rgba(0,162,255,0.1), 
+      rgba(0,255,255,0.2), 
+      rgba(0,162,255,0.1)
+    );
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 20px rgba(0,255,255,0.2);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,255,255,0.3);
+  }
+  
+  .logo-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    background: linear-gradient(to bottom right, rgba(255,255,255,0), rgba(0,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+    transform: rotate(45deg);
+    animation: shimmer 5s infinite linear;
+  }
+  
+  @keyframes shimmer {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+  }
+  
+  .logo {
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--text-color);
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px var(--ai-glow), 0 0 20px var(--ai-glow), 0 0 30px var(--ai-glow);
+    text-align: center;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo::before {
+    content: '🧠';
+    font-size: 2rem;
+    margin-right: 15px;
+    filter: drop-shadow(0 0 5px var(--ai-glow));
+  }
+
+  .logo::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--ai-glow);
+    border-left: 3px solid transparent;
+    border-radius: 50%;
+    animation: rotate 2s linear infinite;
+    right: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 10px var(--ai-glow);
+  }
+
+  @keyframes rotate {
+    0% { transform: translateY(-50%) rotate(0deg); }
+    100% { transform: translateY(-50%) rotate(360deg); }
+  }
+
+  .ai-subtitle {
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ffffff;
+    position: relative;
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.7), 0 0 10px rgba(255, 0, 255, 0.7);
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.9; }
+  }
+  
+  .categories-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .category {
+    width: 100%;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .category::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    background: linear-gradient(to bottom right, rgba(255,255,255,0), rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+    transform: rotate(45deg);
+    animation: categoryShimmer 5s infinite linear;
+    z-index: 1;
+  }
+  
+  @keyframes categoryShimmer {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+  }
+  
+  .category-title {
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-bottom: 15px;
+    color: var(--text-color);
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(255,255,255,0.3);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .nav-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-size);
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .nav-item {
+    width: var(--tile-size);
+    height: var(--tile-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 400;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transform-origin: center;
+  }
+  
+  .nav-item:hover, .nav-item:focus {
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    z-index: 10;
+    outline: none;
+  }
+  
+  .nav-item:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+  
+  .nav-item span {
+    z-index: 2;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+  
+  .nav-item:hover span, .nav-item:focus span {
+    animation: bounce 0.5s ease infinite alternate;
+  }
+
+  @keyframes bounce {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-5px) rotate(5deg); }
+  }
+  
+  .nav-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+    z-index: 1;
+    transition: all 0.3s ease;
+  }
+
+  .nav-item::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    background: linear-gradient(to bottom right, rgba(255,255,255,0), rgba(255,255,255,0.13) 50%, rgba(255,255,255,0) 100%);
+    transform: rotate(45deg);
+    transition: all 0.3s ease;
+    z-index: 1;
+  }
+
+  .nav-item:hover::after, .nav-item:focus::after {
+    transform: rotate(45deg) translate(50%, 50%);
+  }
+
+  /* Color assignments for tiles with gradients */
+  .nav-item:nth-child(6n+1) { background: linear-gradient(135deg, #00c2c7, #0082c7); }
+  .nav-item:nth-child(6n+2) { background: linear-gradient(135deg, #ff4081, #c7008b); }
+  .nav-item:nth-child(6n+3) { background: linear-gradient(135deg, #b388ff, #7c4dff); }
+  .nav-item:nth-child(6n+4) { background: linear-gradient(135deg, #1de9b6, #00b686); }
+  .nav-item:nth-child(6n+5) { background: linear-gradient(135deg, #ffab40, #ff6d00); }
+  .nav-item:nth-child(6n) { background: linear-gradient(135deg, #40c4ff, #0091ea); }
+
+  @media (max-width: 1024px) {
+    :root {
+      --tile-size: 110px;
+      --gap-size: 8px;
+    }
+    
+    .logo {
+      font-size: 2.2rem;
+    }
+    
+    .category-title {
+      font-size: 1.6rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    :root {
+      --tile-size: 100px;
+      --gap-size: 8px;
+    }
+    
+    .logo {
+      font-size: 2rem;
+    }
+    
+    .category-title {
+      font-size: 1.4rem;
+    }
+
+    .container {
+      padding: 15px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    :root {
+      --tile-size: 80px;
+      --gap-size: 6px;
+    }
+    
+    .logo {
+      font-size: 1.8rem;
+    }
+    
+    .category-title {
+      font-size: 1.2rem;
+    }
+    
+    .nav-item {
+      font-size: 0.9rem;
+    }
+
+    .container {
+      padding: 10px;
+    }
+  }
+
+  @media (max-width: 320px) {
+    :root {
+      --tile-size: 70px;
+      --gap-size: 5px;
+    }
+    
+    .logo {
+      font-size: 1.6rem;
+    }
+    
+    .category-title {
+      font-size: 1.1rem;
+    }
+    
+    .nav-item {
+      font-size: 0.8rem;
+    }
+  }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head><body>
+  <div class="container">
+    <div class="logo-container">
+      <h1 class="logo">HyperNav</h1>
+      <div class="ai-subtitle">AI-Powered Navigation</div>
+    </div>
+    
+    <div class="categories-container">
+      <div class="category">
+        <h2 class="category-title">搜索引擎</h2>
+        <div class="nav-grid">
+          <a href="https://www.google.com" class="nav-item"><span>Google</span></a>
+          <a href="https://www.bing.com" class="nav-item"><span>Bing</span></a>
+          <a href="https://www.baidu.com" class="nav-item"><span>百度</span></a>
+          <a href="https://duckduckgo.com" class="nav-item"><span>DuckDuckGo</span></a>
+          <a href="https://www.ecosia.org" class="nav-item"><span>Ecosia</span></a>
+          <a href="https://yandex.com" class="nav-item"><span>Yandex</span></a>
+        </div>
+      </div>
+
+      <div class="category">
+        <h2 class="category-title">社交媒体</h2>
+        <div class="nav-grid">
+          <a href="https://www.facebook.com" class="nav-item"><span>Facebook</span></a>
+          <a href="https://twitter.com" class="nav-item"><span>Twitter</span></a>
+          <a href="https://www.instagram.com" class="nav-item"><span>Instagram</span></a>
+          <a href="https://www.linkedin.com" class="nav-item"><span>LinkedIn</span></a>
+          <a href="https://www.tiktok.com" class="nav-item"><span>TikTok</span></a>
+          <a href="https://www.reddit.com" class="nav-item"><span>Reddit</span></a>
+        </div>
+      </div>
+
+      <div class="category">
+        <h2 class="category-title">实用工具</h2>
+        <div class="nav-grid">
+          <a href="https://translate.google.com" class="nav-item"><span>Google翻译</span></a>
+          <a href="https://www.wolframalpha.com" class="nav-item"><span>Wolfram Alpha</span></a>
+          <a href="https://www.calculator.net" class="nav-item"><span>在线计算器</span></a>
+          <a href="https://www.speedtest.net" class="nav-item"><span>网速测试</span></a>
+          <a href="https://www.timeanddate.com" class="nav-item"><span>时间日期</span></a>
+          <a href="https://www.wikihow.com" class="nav-item"><span>WikiHow</span></a>
+        </div>
+      </div>
+
+      <div class="category">
+        <h2 class="category-title">科技资讯</h2>
+        <div class="nav-grid">
+          <a href="https://www.techcrunch.com" class="nav-item"><span>TechCrunch</span></a>
+          <a href="https://www.wired.com" class="nav-item"><span>Wired</span></a>
+          <a href="https://www.theverge.com" class="nav-item"><span>The Verge</span></a>
+          <a href="https://arstechnica.com" class="nav-item"><span>Ars Technica</span></a>
+          <a href="https://www.engadget.com" class="nav-item"><span>Engadget</span></a>
+          <a href="https://techradar.com" class="nav-item"><span>TechRadar</span></a>
+        </div>
+      </div>
+
+      <div class="category">
+        <h2 class="category-title">云存储</h2>
+        <div class="nav-grid">
+          <a href="https://www.dropbox.com" class="nav-item"><span>Dropbox</span></a>
+          <a href="https://drive.google.com" class="nav-item"><span>Google Drive</span></a>
+          <a href="https://onedrive.live.com" class="nav-item"><span>OneDrive</span></a>
+          <a href="https://www.box.com" class="nav-item"><span>Box</span></a>
+          <a href="https://www.mediafire.com" class="nav-item"><span>MediaFire</span></a>
+          <a href="https://mega.nz" class="nav-item"><span>MEGA</span></a>
+        </div>
+      </div>
+
+      <div class="category">
+        <h2 class="category-title">电子邮箱</h2>
+        <div class="nav-grid">
+          <a href="https://mail.google.com" class="nav-item"><span>Gmail</span></a>
+          <a href="https://outlook.live.com" class="nav-item"><span>Outlook</span></a>
+          <a href="https://mail.yahoo.com" class="nav-item"><span>Yahoo Mail</span></a>
+          <a href="https://www.zoho.com/mail" class="nav-item"><span>Zoho Mail</span></a>
+          <a href="https://www.protonmail.com" class="nav-item"><span>ProtonMail</span></a>
+          <a href="https://mail.qq.com" class="nav-item"><span>QQ邮箱</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body></html>
